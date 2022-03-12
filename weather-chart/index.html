@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CSV FILES</title>
+        <meta charset="utf-8" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                background-color: #2c2c2c;
+            }
+            #loading-gif {
+                display: flex;
+                margin: auto;
+                height: 10vh;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div style="display: flex; height: 90vh; width: 90vw; margin: auto; margin-top: 10px; flex-direction: column; flex-wrap: wrap;">
+            <img id="loading-gif" src="loading.gif" />
+            <canvas id="myChart" style="display: flex;"></canvas>
+        </div>      
+
+        <script>
+            //https://data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv
+            const CSV_FILE_URL = 'https://data.giss.nasa.gov/gistemp/tabledata_v4/ZonAnn.Ts+dSST.csv';
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            
+
+            const data = {
+                labels: [],
+                datasets: [{
+                    label: "Temperature",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    fontColor: '#000000',
+                    data: []
+                }]
+            };
+
+            const chartConfig = {
+                type: 'line',
+                data,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Temperature 1880-present',
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 18
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+
+            let getData = async () => {
+                const res = await fetch(corsProxy + CSV_FILE_URL);
+                const resText = await res.text();
+                document.getElementById('loading-gif').style.display = 'none';
+                //console.log(resText);
+
+                const resRows = resText.split('\n').slice(1);
+                resRows.forEach(row => {
+                    if(row)
+                    {
+                        const cols = row.split(',');
+
+                        const year = cols[0];
+                        data.labels.push(year);
+
+                        const temp = parseFloat(cols[1]);
+                        data.datasets[0].data.push(temp);
+                    }
+                });
+
+                var myChart = new Chart(
+                    document.getElementById('myChart'),
+                    chartConfig
+                )
+
+                //console.log(data.datasets[0])
+            }
+
+            getData()
+                .catch(err => {
+                    console.log(err)
+                });
+            
+        </script>
+    </body>
+</html>
