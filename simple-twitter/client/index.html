@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    </head>
+    <body>
+        <div class="main-div">
+            <h2 class="title">Simple twitter app</h2>
+            <form method="POST">
+                <p class="input-p">
+                    Nick: <input type="text" id="nick" name="nick">
+                </p>
+                <p class="input-p">
+                    Treść: <textarea id="content" name="content"></textarea>
+                </p>
+                <button class="submit-button">Send</button>
+            </form>
+            <div class="list-twits">
+                
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
