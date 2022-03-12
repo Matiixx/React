@@ -1,0 +1,12 @@
+npm init
+npm install tmi.js
+npm i express
+npm i cors
+npm install mongoose --save
+npm i helmet
+add "dev": "nodemon index.js" to package.json
+console.log(util.inspect(tags, { showHidden: false, depth: null } )); -> inspect object, nice tool
+run mongod.exe
+
+Front
+npx create-react-app

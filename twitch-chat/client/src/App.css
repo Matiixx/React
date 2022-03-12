@@ -1,0 +1,61 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 5s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.messageBox {
+  padding-left: 10px;
+  display: flex;
+  text-align: left;
+}
+
+.nickname {
+  font-weight: bold;
+  color: #61dafb;
+  height: auto;
+}
+
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 50vw;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
