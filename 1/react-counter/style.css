@@ -1,0 +1,34 @@
+* {
+    margin: 0 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.site-name {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+body {
+    background-color: gray;
+}
+.main-div {
+    margin: auto;
+    width: 50%;
+    padding: 100px;
+    text-align: center;
+}
+.btn {
+    padding: 10px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 7px;
+    border-bottom-left-radius: 0;
+    background-color: #2596be;
+    color: #fbe7b4;
+    transition: all 0.3s;
+}
+.counter.p {
+    margin-bottom: 30px;
+    font-size: 30px;
+}
