@@ -30,8 +30,7 @@ export default function App() {
 
     return () => {
       clearTimeout(timeoutID);
-    }
-    
+    }    
   }, [users, filter]);
 
   useEffect(() => {
