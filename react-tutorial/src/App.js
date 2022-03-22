@@ -1,8 +1,9 @@
 import './App.css';
+import TicTacToe from './components/TicTacToe';
 
 function App() {
   return (
-    <h1>Hello world</h1>
+    <TicTacToe />
   );
 }
 
