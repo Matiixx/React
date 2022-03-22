@@ -17,6 +17,7 @@ export default function App() {
   }, [users, filter]);*/
 
   useEffect(() => {
+    //Store timeout ID
     let timeoutID = setTimeout(() => {
       const regexp = new RegExp(filter, 'gi');
       console.log(regexp);
@@ -27,7 +28,7 @@ export default function App() {
         })
       );
     }, 500);
-
+    //While [users, filter] are changing we are cleaning timeout
     return () => {
       clearTimeout(timeoutID);
     }    
