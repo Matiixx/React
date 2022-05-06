@@ -5,9 +5,13 @@ const initialStateValues = "";
 export const themeSlice = createSlice({
   name: "theme",
   initialState: { value: initialStateValues },
-  reducers: {},
+  reducers: {
+    updateColor: (state, action) => {
+      state.value = action.payload;
+    },
+  },
 });
 
-export const {} = themeSlice.actions;
+export const { updateColor } = themeSlice.actions;
 
 export default themeSlice.reducer;
