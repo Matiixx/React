@@ -1,0 +1,7 @@
+.home-nav
+{
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  margin: auto;
+}
