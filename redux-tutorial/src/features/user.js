@@ -10,4 +10,6 @@ export const userSilce = createSlice({
   },
 });
 
+export const { login } = userSilce.actions;
+
 export default userSilce.reducer;
