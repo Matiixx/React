@@ -16,6 +16,7 @@ function App() {
   //Bool variable to resize canvas when image is loaded
   const [resizeCanvas, setResizeCanvas] = useState(false);
 
+  const [canvas, setCanvas] = useState(null);
   //Sizes of canvas
   const [canvasHeight, setCanvasHeight] = useState(100);
   const [canvasWidth, setCanvasWidth] = useState(100);
@@ -24,18 +25,21 @@ function App() {
 
   let preload = (p5) => {
     setP5(p5);
-    setImage(p5.loadImage("./like.jpg"));
+    let loadimg = p5.loadImage("./like.jpg", () => {
+      setImage(loadimg);
+    });
   };
 
   let setup = (p5, canvasParentRef) => {
     //Create canvas
-    let canvas = p5
+    let canv = p5
       .createCanvas(canvasWidth, canvasHeight)
       .parent(canvasParentRef);
     //Set canvas position - center of window
     let x = (p5.windowWidth - p5.width) / 2;
     let y = (p5.windowHeight - p5.height) / 2;
-    canvas.position(x, y);
+    canv.position(x, y);
+    setCanvas(canv);
   };
 
   let draw = (p5) => {
@@ -45,19 +49,25 @@ function App() {
     //Resize Canvas
     if (resizeCanvas) {
       setResizeCanvas(false);
-      getSizing(maxHeight, maxWidth, img.height, img.width);
-      p5.resizeCanvas(200, 200);
+      let [x, y] = getSizing(maxHeight, maxWidth, img.height, img.width);
+      setCanvasHeight(x);
+      setCanvasWidth(y);
+      p5.resizeCanvas(y, x);
+      x = (p5.windowWidth - p5.width) / 2;
+      y = (p5.windowHeight - p5.height) / 2;
+      // canvas.position(x, y);
     }
 
     //Draw image
     if (img) {
-      p5.image(img, 0, 0, 100, 100);
-      img.loadPixels();
+      p5.image(img, 0, 0, p5.width, p5.height);
+      // img.loadPixels();
     }
   };
 
   const getSizing = (maxHeight, maxWidth, imgHeight, imgWidth) => {
     console.log(imgHeight, imgWidth);
+    return [800, 800];
   };
 
   const onButtonClick = () => {
