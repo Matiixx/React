@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Sketch from "react-p5";
 
+var canv;
+
 function App() {
   //Most important, most usefull
   //-------------------------------
@@ -32,14 +34,15 @@ function App() {
 
   let setup = (p5, canvasParentRef) => {
     //Create canvas
-    let canv = p5
-      .createCanvas(canvasWidth, canvasHeight)
+    canv = p5
+      .createCanvas(p5.windowWidth * 0.85, p5.windowHeight * 1.0)
       .parent(canvasParentRef);
+
     //Set canvas position - center of window
-    let x = (p5.windowWidth - p5.width) / 2;
-    let y = (p5.windowHeight - p5.height) / 2;
+    let x = p5.windowWidth - p5.width;
+    let y = p5.windowHeight - p5.height;
     canv.position(x, y);
-    setCanvas(canv);
+    // setCanvas(canv);
   };
 
   let draw = (p5) => {
@@ -59,10 +62,18 @@ function App() {
     }
 
     //Draw image
-    if (img) {
-      p5.image(img, 0, 0, p5.width, p5.height);
-      // img.loadPixels();
-    }
+    // if (img) {
+    //   p5.image(img, 0, 0, p5.width, p5.height);
+    //   // img.loadPixels();
+    // }
+  };
+
+  let windowResized = (p5) => {
+    console.log("dupa");
+    // let canv = p5.resizeCanvas(p5.windowWidth * 0.85, p5.windowHeight * 1.0);
+    // let x = p5.windowWidth - p5.width;
+    // let y = p5.windowHeight - p5.height;
+    // canv.position(x, y);
   };
 
   const getSizing = (maxHeight, maxWidth, imgHeight, imgWidth) => {
@@ -112,7 +123,13 @@ function App() {
         onChange={onChangeFile.bind(this)}
       />
       <button onClick={onButtonClick}>Open file upload window</button>
-      <Sketch preload={preload} setup={setup} draw={draw} className="App" />
+      <Sketch
+        preload={preload}
+        setup={setup}
+        draw={draw}
+        windowResized={windowResized}
+        className="App"
+      />
     </div>
   );
 }
