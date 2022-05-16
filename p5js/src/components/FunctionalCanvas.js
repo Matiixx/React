@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from "react";
 import * as p5 from "p5";
 
+/*
+        TODO
+  * - not necessary 
+
+[] Debounced color picker
+[] Try open large images / with diffrent sizes
+[] Open files from input
+[] Reassign variables of image after loading
+[] Change color of picked pixels
+[] Save edited image 
+[] * Create Drag and drop option 
+*/
+
 export default function Canvas() {
   let myRef = React.createRef();
   const [myP5, setMyP5] = useState(null);
-  let image = null;
-  let size = { width: 0, height: 0 };
-  let selectedColor = "rgb(0, 0, 0)";
+  const [selectedColorStyle, setSelectedColorStyle] = useState("rgb(0, 0, 0)"); // For selected pixel color div
 
   let Sketch = (p) => {
-    let dimension, canvas;
-    // Loads the music file into p5.js to play on click
+    let image = null;
+    let selectedColor = "rgb(0, 0, 0)";
+    let dimension;
+    let size = { width: 0, height: 0 };
+    let canvas;
+
     p.preload = () => {
       console.log("Preload, loading image...");
       image = p.loadImage("./test2.png");
       image.loadPixels();
     };
 
-    // Initial setup to create canvas and audio analyzers
     p.setup = () => {
       dimension = p.min(p.windowWidth / 1.5, p.windowHeight / 1.5);
       p.frameRate(60);
@@ -31,7 +45,7 @@ export default function Canvas() {
 
     p.draw = () => {
       //p.translate(p.width / 2, p.height / 2); // Center the canvas so that 0,0 is the center
-      p.background("rgb(50,50,50)");
+      p.background("rgb(100,100,100)");
 
       if (image) {
         p.image(image, 0, 0, p.width, (image.height * p.width) / image.width);
@@ -54,6 +68,7 @@ export default function Canvas() {
         getColorFromPixel(image, e.layerX, e.layerY);
       }
     };
+
     let clickInImage = (size, x, y) => {
       return x <= size.width && y <= size.height;
     };
@@ -66,6 +81,7 @@ export default function Canvas() {
       let G = image.pixels[4 * (imageX + imageY * image.width) + 1];
       let B = image.pixels[4 * (imageX + imageY * image.width) + 2];
       selectedColor = numToRGBString(R, G, B);
+      setSelectedColorStyle(selectedColor);
     };
 
     let numToRGBString = (R, G, B) => {
@@ -86,6 +102,23 @@ export default function Canvas() {
 
   return (
     <div>
+      <input
+        type="color"
+        id="head"
+        name="head"
+        onChange={(e) => {
+          console.log("change", e.target.value);
+        }}
+      ></input>
+      <div
+        className="selected-color"
+        style={{
+          backgroundColor: selectedColorStyle,
+          width: "100px",
+          height: "100px",
+        }}
+      ></div>
+      {/* Real canvas div */}
       <div
         className="canvas-div"
         style={{
