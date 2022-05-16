@@ -3,8 +3,8 @@ import Canvas from "./components/FunctionalCanvas";
 
 export default function App() {
   return (
-    <div>
-      App
+    <div className="App">
+      <button>Open file upload window</button>
       <Canvas />
     </div>
   );
