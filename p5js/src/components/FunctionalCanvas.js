@@ -6,13 +6,15 @@ export default function Canvas() {
   const [myP5, setMyP5] = useState(null);
   let image = null;
   let size = { width: 0, height: 0 };
+  let selectedColor = "rgb(0, 0, 0)";
 
   let Sketch = (p) => {
     let dimension, canvas;
     // Loads the music file into p5.js to play on click
     p.preload = () => {
       console.log("Preload, loading image...");
-      image = p.loadImage("./like.jpg");
+      image = p.loadImage("./test2.png");
+      image.loadPixels();
     };
 
     // Initial setup to create canvas and audio analyzers
@@ -32,7 +34,6 @@ export default function Canvas() {
       p.background("rgb(50,50,50)");
 
       if (image) {
-        // console.log(image);
         p.image(image, 0, 0, p.width, (image.height * p.width) / image.width);
         size = {
           width: parseInt(p.width),
@@ -47,14 +48,29 @@ export default function Canvas() {
     };
 
     p.handleClick = (e) => {
-      // if (clickInImage(size, e.x, e.y))
-      console.log("Click at [", e.x, e.y, "]");
-      console.log(size);
+      if (clickInImage(size, e.layerX, e.layerY)) {
+        console.log("Click at [", e.layerX, e.layerY, "]");
+        image.loadPixels();
+        getColorFromPixel(image, e.layerX, e.layerY);
+      }
     };
-  };
+    let clickInImage = (size, x, y) => {
+      return x <= size.width && y <= size.height;
+    };
 
-  let clickInImage = (size, x, y) => {
-    return x <= size.width && y <= size.height;
+    let getColorFromPixel = (image, x, y) => {
+      let imageX = parseInt(p.map(x, 0, size.width, 0, image.width));
+      let imageY = parseInt(p.map(y, 0, size.height, 0, image.height));
+      console.log(imageX, imageY);
+      let R = image.pixels[4 * (imageX + imageY * image.width)];
+      let G = image.pixels[4 * (imageX + imageY * image.width) + 1];
+      let B = image.pixels[4 * (imageX + imageY * image.width) + 2];
+      selectedColor = numToRGBString(R, G, B);
+    };
+
+    let numToRGBString = (R, G, B) => {
+      return "rgb(" + R + "," + G + "," + B + ")";
+    };
   };
 
   useEffect(() => {
