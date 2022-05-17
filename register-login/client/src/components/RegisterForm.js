@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+const URI_REGISTER = "http://localhost:5000/register";
 
 export default function Register() {
   const [registerUsername, setRegisterUsername] = useState("");
@@ -15,10 +16,24 @@ export default function Register() {
     setRegisterPassword(e.target.value);
   };
 
-  const submitLogin = (e) => {
-    if (!isTryingToRegister) {
+  const submitRegister = (e) => {
+    if (!isTryingToRegister && registerUsername && registerPassword) {
       e.preventDefault();
       setIsTryingToRegister(true);
+
+      Axios.post(URI_REGISTER, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        username: registerUsername,
+        password: registerPassword,
+      })
+        .then((res) => {
+          setIsTryingToRegister(false);
+        })
+        .catch((e) => {
+          setIsTryingToRegister(false);
+        });
     }
   };
 
@@ -46,7 +61,10 @@ export default function Register() {
         style={{ width: "50%", fontSize: "20px", padding: "5px" }}
         onChange={passwordFormChange}
       ></input>
-      <button style={{ width: "50%", fontSize: "20px" }} onClick={submitLogin}>
+      <button
+        style={{ width: "50%", fontSize: "20px" }}
+        onClick={submitRegister}
+      >
         Register
       </button>
     </div>

@@ -29,9 +29,12 @@ router.post("/", async (req, res, next) => {
     });
 
     if (find) {
-      res.status(400).send({
-        message: "Username unavailable",
-      });
+      res
+        .status(400)
+        .json({
+          message: "Username unavailable",
+        })
+        .send();
       mongoose.connection.close();
       return;
     }
