@@ -24,9 +24,11 @@ router.post("/", async (req, res, next) => {
       password: reqPassword,
     });
 
-    let find = await userSchema.findOne({
-      username: reqUsername,
-    });
+    let find = await userSchema
+      .findOne({
+        username: reqUsername,
+      })
+      .exec();
 
     if (find) {
       res

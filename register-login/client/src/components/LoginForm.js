@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Axios from "axios";
+const URI_LOGIN = "http://localhost:5000/login";
 
 export default function Login() {
   const [loginUsername, setLoginUsername] = useState("");
@@ -15,9 +17,25 @@ export default function Login() {
   };
 
   const submitLogin = (e) => {
-    if (isTryingToLogin) {
+    if (!isTryingToLogin && loginUsername && loginPassword) {
       e.preventDefault();
       setIsTryingToLogin(true);
+
+      Axios.post(URI_LOGIN, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        username: loginUsername,
+        password: loginPassword,
+      })
+        .then((res) => {
+          setIsTryingToLogin(false);
+          console.log(res);
+        })
+        .catch((e) => {
+          setIsTryingToLogin(false);
+          console.log(e);
+        });
     }
   };
 
