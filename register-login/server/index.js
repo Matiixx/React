@@ -3,7 +3,6 @@ const loginRoute = require("./routes/login");
 const registerRoute = require("./routes/register");
 
 const app = express();
-
 app.use(express.json());
 
 app.listen(5000, () => {
