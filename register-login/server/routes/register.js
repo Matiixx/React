@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userSchema = require("../db/userSchema");
+const { route } = require("./login");
 
 const DB_URI = "mongodb://127.0.0.1:27017/users";
 
@@ -15,7 +16,7 @@ router.get("/", (res, req, next) => {
     .then(() => {
       console.log("Connected to DB");
       req.json({
-        message: "Login endpoint",
+        message: "Register endpoint",
       });
     })
     .catch((err) => console.log(err));
