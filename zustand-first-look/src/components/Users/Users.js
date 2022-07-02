@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../../store/useStore";
+import { Link } from "react-router-dom";
 
 export default function Users() {
   const [loading, setLoading] = useState(true);
@@ -19,6 +20,13 @@ export default function Users() {
 
   return (
     <div>
+      <div className="nav">
+        Users
+        <p>
+          <Link to="/">Go To Home</Link>
+        </p>
+      </div>
+
       {loading && "Loading Users"}
 
       {users.map((u) => {
