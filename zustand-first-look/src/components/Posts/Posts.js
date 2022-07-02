@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useStore from "../../store/useStore";
+import Post from "./Post";
 import "./Posts.css";
 
 export default function Posts() {
@@ -26,12 +27,7 @@ export default function Posts() {
       {loading && "Loading posts"}
       <div className="posts">
         {posts.map((p) => {
-          return (
-            <div key={p.id}>
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
-            </div>
-          );
+          return <Post key={p.id} title={p.title} body={p.body} />;
         })}
       </div>
     </div>
