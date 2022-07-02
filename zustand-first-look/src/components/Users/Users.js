@@ -41,7 +41,7 @@ export default function Users() {
           return (
             <User
               key={u.id}
-              onClick={() => addToHighlight(u)}
+              clickHandle={() => addToHighlight(u)}
               isHighlighted={isHighlighted(u)}
               name={u.name}
             />
@@ -55,7 +55,7 @@ export default function Users() {
           return (
             <HighlightedUser
               key={u.id}
-              onClick={() => deleteFromHighlight(u)}
+              clickHandle={() => deleteFromHighlight(u)}
               name={u.name}
             />
           );

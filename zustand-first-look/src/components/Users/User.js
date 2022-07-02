@@ -4,15 +4,16 @@ import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 
-export default function User({ name, onClick, isHighlighted }) {
+export default function User({ name, clickHandle, isHighlighted }) {
   return (
     <Chip
+      className="user-chip"
       template={
         <>
           <span className="p-chip-text">{name}</span>
           {!isHighlighted && (
             <i
-              onClick={onClick}
+              onClick={clickHandle}
               className="pi pi-plus-circle highlightButton"
             ></i>
           )}
