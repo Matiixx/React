@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useStore from "../../store/useStore";
 import { Link } from "react-router-dom";
+import User from "./User";
+import "./Users.css";
 
 export default function Users() {
   const [loading, setLoading] = useState(true);
@@ -18,6 +20,10 @@ export default function Users() {
     // eslint-disable-next-line
   }, []);
 
+  const isHighlighted = (u) => {
+    return highlightedUsers.some((filterUser) => filterUser.id === u.id);
+  };
+
   return (
     <div>
       <div className="nav">
@@ -29,17 +35,18 @@ export default function Users() {
 
       {loading && "Loading Users"}
 
-      {users.map((u) => {
-        return (
-          <div
-            key={u.id}
-            style={{ cursor: "pointer" }}
-            onClick={() => addToHighlight(u)}
-          >
-            {u.name}
-          </div>
-        );
-      })}
+      <div className="users-list">
+        {users.map((u) => {
+          return (
+            <User
+              key={u.id}
+              onClick={() => addToHighlight(u)}
+              isHighlighted={isHighlighted(u)}
+              name={u.name}
+            />
+          );
+        })}
+      </div>
 
       <h3>Highlighted Users: ({highlightedUsers.length})</h3>
       {highlightedUsers.map((u) => {
