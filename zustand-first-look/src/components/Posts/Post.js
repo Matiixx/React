@@ -1,7 +1,6 @@
 import React from "react";
 import { Panel } from "primereact/panel";
 import "primeicons/primeicons.css";
-import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
 
 export default function Post({ title, body }) {
   return (

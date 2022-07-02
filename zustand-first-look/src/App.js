@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import Users from "./components/Users/Users";
 import Posts from "./components/Posts/Posts";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 function App() {
   return (

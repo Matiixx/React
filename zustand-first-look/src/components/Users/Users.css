@@ -6,12 +6,14 @@
   flex-direction: column;
 }
 
-.p-chip
+.p-chip.user-chip
 {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 3px;
+  background-color: var(--gray-100);
+  color: black;
 }
 
 .p-chip .highlightButton
@@ -21,7 +23,7 @@
   cursor: pointer;
 }
 
-.p-chip.highlighted-chip
+.p-chip.user-chip.highlighted
 {
   background: #6366F1;
   color: white;
