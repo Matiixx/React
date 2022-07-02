@@ -7,7 +7,6 @@ const createUserSlice = (set, get) => ({
   },
   addToHighlight: (user) => {
     set({ highlightedUsers: [...new Set([...get().highlightedUsers, user])] });
-    // set((state) => ({ highlightedUsers: [...state.highlightedUsers, user] }));
   },
   deleteFromHighlight: (user) => {
     set((state) => ({
