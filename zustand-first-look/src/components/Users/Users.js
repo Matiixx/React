@@ -7,6 +7,8 @@ export default function Users() {
   const users = useStore((state) => state.users);
   const fetchUsers = useStore((state) => state.fetchUsers);
 
+  const highlightedUsers = useStore((state) => state.highlightedUsers);
+  const deleteFromHighlight = useStore((state) => state.deleteFromHighlight);
   const addToHighlight = useStore((state) => state.addToHighlight);
 
   useEffect(() => {
@@ -21,8 +23,25 @@ export default function Users() {
 
       {users.map((u) => {
         return (
-          <div key={u.id} onClick={addToHighlight}>
+          <div
+            key={u.id}
+            style={{ cursor: "pointer" }}
+            onClick={() => addToHighlight(u)}
+          >
             {u.name}
+          </div>
+        );
+      })}
+
+      <h3>Highlighted Users: ({highlightedUsers.length})</h3>
+      {highlightedUsers.map((u) => {
+        return (
+          <div
+            key={u.id}
+            style={{ cursor: "pointer" }}
+            onClick={() => deleteFromHighlight(u)}
+          >
+            <b>{u.name}</b>
           </div>
         );
       })}
