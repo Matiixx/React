@@ -7,12 +7,9 @@ import "primereact/resources/primereact.css";
 export default function User({ name, onClick, isHighlighted }) {
   return (
     <Chip
-      className="mr-2 mb-2"
       template={
         <>
-          <span className="p-chip-text">
-            {name} {isHighlighted}
-          </span>
+          <span className="p-chip-text">{name}</span>
           {!isHighlighted && (
             <i
               onClick={onClick}

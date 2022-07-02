@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useStore from "../../store/useStore";
 import { Link } from "react-router-dom";
 import User from "./User";
+import HighlightedUser from "./HighlightedUser";
 import "./Users.css";
 
 export default function Users() {
@@ -49,17 +50,17 @@ export default function Users() {
       </div>
 
       <h3>Highlighted Users: ({highlightedUsers.length})</h3>
-      {highlightedUsers.map((u) => {
-        return (
-          <div
-            key={u.id}
-            style={{ cursor: "pointer" }}
-            onClick={() => deleteFromHighlight(u)}
-          >
-            <b>{u.name}</b>
-          </div>
-        );
-      })}
+      <div className="users-list">
+        {highlightedUsers.map((u) => {
+          return (
+            <HighlightedUser
+              key={u.id}
+              onClick={() => deleteFromHighlight(u)}
+              name={u.name}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

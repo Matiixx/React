@@ -16,7 +16,13 @@
 
 .p-chip .highlightButton
 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: black;
   cursor: pointer;
+}
+
+.p-chip.highlighted-chip
+{
+  background: #6366F1;
+  color: white;
 }
