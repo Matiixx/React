@@ -39,6 +39,8 @@ export default function Advices() {
       <div className="advice-container">
         <Advice adviceContent={advice?.slip} />
         <Button
+          style={{ marginTop: "5px" }}
+          icon="pi pi-check"
           loading={loading}
           label="New Random Advice"
           onClick={newAdviceHandle}

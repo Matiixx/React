@@ -11,7 +11,9 @@ export default function Advice({ adviceContent }) {
   }
   return (
     <Card className="advice-card" title={"#" + adviceContent?.id}>
+      {'"'}
       {adviceContent.advice}
+      {'"'}
     </Card>
   );
 }
