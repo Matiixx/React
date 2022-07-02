@@ -5,7 +5,7 @@ export default function Advice({ adviceContent }) {
   if (adviceContent === undefined) {
     return (
       <Card className="advice-card">
-        <i className="pi pi-spin pi-spinner" style={{ fontSize: "2em" }}></i>
+        <i className="pi pi-spin pi-spinner" style={{ fontSize: "2em" }} />
       </Card>
     );
   }
