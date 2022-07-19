@@ -42,9 +42,14 @@ router.post("/", async (req, res, next) => {
     }
 
     await newUser.save();
-    res.sendStatus(200).send();
+    res
+      .status(200)
+      .json({
+        message: "Account created",
+      })
+      .send();
   } else {
-    res.sendStatus(400).send();
+    res.status(400).json({ message: "Error" }).send();
   }
 
   mongoose.connection.close();
