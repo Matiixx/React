@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { deleteCookie, getCookie, setCookie } from "../utils/cookies/cookies";
+import useStore from "../store/useStore";
 const URI_LOGIN = "http://localhost:5000/login";
 
 export default function Login() {
@@ -7,6 +9,10 @@ export default function Login() {
   const [loginPassword, setLoginPassword] = useState("");
 
   const [isTryingToLogin, setIsTryingToLogin] = useState(false);
+
+  const [loginResponse, setLoginResponse] = useState("");
+  const setUsername = useStore((state) => state.setUsername);
+  const setLogged = useStore((state) => state.setLogged);
 
   const usernameFormChange = (e) => {
     setLoginUsername(e.target.value);
@@ -30,11 +36,16 @@ export default function Login() {
       })
         .then((res) => {
           setIsTryingToLogin(false);
-          console.log(res);
+          setLoginResponse(res.data.message);
+          if (res.data.message === "Login success") {
+            setCookie("accessToken", res.data.accessToken);
+            setUsername(loginUsername);
+            setLogged(true);
+          }
         })
         .catch((e) => {
           setIsTryingToLogin(false);
-          console.log(e);
+          setLoginResponse(e.response.data.message);
         });
     }
   };
@@ -68,6 +79,7 @@ export default function Login() {
       <button style={{ width: "50%", fontSize: "20px" }} onClick={submitLogin}>
         Login
       </button>
+      {loginResponse && loginResponse}
     </div>
   );
 }
