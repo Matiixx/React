@@ -8,6 +8,8 @@ export default function Register() {
 
   const [isTryingToRegister, setIsTryingToRegister] = useState(false);
 
+  const [registerResponse, setRegisterResponse] = useState("");
+
   const usernameFormChange = (e) => {
     setRegisterUsername(e.target.value);
   };
@@ -30,9 +32,13 @@ export default function Register() {
       })
         .then((res) => {
           setIsTryingToRegister(false);
+          console.log(res, res.response.data.message);
+          setRegisterResponse(res.response.data.message);
         })
         .catch((e) => {
           setIsTryingToRegister(false);
+          console.log(e, e.response.data.message);
+          setRegisterResponse(e.response.data.message);
         });
     }
   };
@@ -67,6 +73,7 @@ export default function Register() {
       >
         Register
       </button>
+      {registerResponse && registerResponse}
     </div>
   );
 }
