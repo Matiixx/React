@@ -1,0 +1,20 @@
+.todo-panel {
+  width: 100%;
+  border-radius: 0px 15px 0px 15px;
+  padding: 1em;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-top: 1em;
+  background-color: var(--gray-200);
+}
+
+.panel-buttons {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.panel-body {
+  padding: 5px;
+  font-weight: bold;
+}
