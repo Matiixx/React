@@ -24,7 +24,6 @@ export default function CharactersContainer() {
   if (isLoading) {
     return <p>Loading data...</p>;
   }
-  console.log(characters);
   return (
     <>
       <div className="characters-container">
