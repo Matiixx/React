@@ -1,0 +1,30 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    input:not([type="submit"]) {
+      font-size: 20px;
+      margin-top: 5px;
+      border-radius: 0;
+      padding: 10px;
+      background-color: lightblue;
+      border: 2px solid gray;
+    }
+    input[type="submit"] {
+      font-size: 20px;
+      padding: 5px;
+      margin: 10px;
+    }
+    input:invalid {
+      padding: 0px;
+    }
+    .error-message-label {
+      font-size: 14px;
+      color: red;
+    }
+  }
+}
