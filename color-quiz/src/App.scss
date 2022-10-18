@@ -24,8 +24,8 @@ main {
   padding-top: 100px;
 
   .color-box {
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     background-color: white;
     border: 5px solid black;
   }
@@ -36,6 +36,19 @@ main {
       background-color: white;
       margin: 20px;
       font-size: 30px;
+      cursor: pointer;
+    }
+
+    .result-msg {
+      color: white;
+    }
+
+    .result-msg.correct {
+      color: green;
+    }
+
+    .result-msg.wrong {
+      color: red;
     }
   }
 }
