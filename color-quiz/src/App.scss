@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-top: 100px;
+
+  .color-box {
+    height: 200px;
+    width: 200px;
+    background-color: white;
+    border: 5px solid black;
+  }
+
+  .answers-container {
+    button {
+      border: none;
+      background-color: white;
+      margin: 20px;
+      font-size: 30px;
+    }
+  }
+}
