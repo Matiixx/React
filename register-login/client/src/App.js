@@ -6,12 +6,11 @@ import useStore from "./store/useStore";
 
 function App() {
   const isLogged = useStore((state) => state.isLogged);
-
   return (
     <div className="App">
       <Header />
-      {!isLogged && <Login />}
-      {!isLogged && <Register />}
+      {isLogged === false && <Login />}
+      {isLogged === false && <Register />}
     </div>
   );
 }

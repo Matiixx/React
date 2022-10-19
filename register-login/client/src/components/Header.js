@@ -4,8 +4,8 @@ import { checkCookie, deleteCookie } from "../utils/cookies/cookies";
 
 export default function Header() {
   // const [isLogged, setIsLogged] = useState(checkCookie("accessToken"));
-  const isLogged = useStore((state) => state.username);
-
+  const isLogged = useStore((state) => state.isLogged);
+  const username = useStore((state) => state.username);
   const logout = useStore((state) => state.logout);
 
   const handleLogout = () => {
@@ -16,8 +16,8 @@ export default function Header() {
   return (
     <div className="header-container">
       Header
-      {isLogged !== "" && <p>Logged as {isLogged}</p>}
-      {isLogged !== "" && <button onClick={handleLogout}>Logout</button>}
+      {isLogged === true && <p>Logged as {username}</p>}
+      {isLogged === true && <button onClick={handleLogout}>Logout</button>}
     </div>
   );
 }
