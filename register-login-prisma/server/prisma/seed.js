@@ -19,16 +19,17 @@ async function seed() {
       role: 1,
     },
   });
-  for (let i = 0; i < 100000; i++) {
-    await prisma.user.create({
-      data: {
-        username: generateString(),
-        password: generateString(),
-        role: 0,
-      },
-    });
+  for (let i = 0; i < 10000; i++) {
+    try {
+      await prisma.user.create({
+        data: {
+          username: generateString(),
+          password: generateString(),
+          role: 0,
+        },
+      });
+    } catch (err) {}
   }
-  generateString();
 }
 
-// seed();
+seed();
