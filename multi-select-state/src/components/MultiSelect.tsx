@@ -35,14 +35,14 @@ function MultiSelect({
           <span>{isOpen === true ? <BiUpArrow /> : <BiDownArrow />}</span>
         </div>
         {isOpen && (
-          <div className="mt-2 grid grid-cols-3 gap-2 border p-2 shadow">
+          <div className="mt-2 grid grid-cols-3 gap-2 border p-3 shadow">
             {options.map((el, idx) => (
               <div
                 className={
                   (isChecked(idx) === true
                     ? "bg-blue-100 hover:bg-blue-100 "
                     : "") +
-                  "flex cursor-pointer flex-row items-center gap-2 rounded border px-2 shadow-sm hover:bg-blue-50"
+                  "flex cursor-pointer flex-row items-center gap-2 rounded border px-2 py-1 shadow-sm hover:bg-blue-50"
                 }
                 key={idx}
                 onClick={(e) => handleToggle(idx, e)}
