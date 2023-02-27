@@ -1,10 +1,10 @@
 import "./App.css";
-import MulitSelect from "./components/MulitSelect";
+import MultiSelect from "./components/MultiSelect";
 
 function App() {
   return (
     <div className="App">
-      <MulitSelect options={["a", "b", "c"]} />
+      <MultiSelect options={["a", "b", "c"]} />
     </div>
   );
 }

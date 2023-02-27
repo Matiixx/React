@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
-function MulitSelect({ options = [1, 2, 3] }: { options?: Array<any> }) {
+function MultiSelect({ options = [1, 2, 3] }: { options?: Array<any> }) {
   const [isOpen, setIsOpen] = useState(false);
   const [checkedIndices, setCheckedIndices] = useState<Set<number>>(new Set());
 
   const isChecked = (checkedIndex: number) => checkedIndices.has(checkedIndex);
 
   const handleToggle = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
     if (!isChecked(index)) setCheckedIndices((p) => new Set(p).add(index));
     else setCheckedIndices((p) => new Set([...p].filter((el) => el !== index)));
   };
@@ -27,7 +26,9 @@ function MulitSelect({ options = [1, 2, 3] }: { options?: Array<any> }) {
           {options.map((el, idx) => (
             <div
               className={
-                (isChecked(idx) === true ? "bg-blue-100 " : "") +
+                (isChecked(idx) === true
+                  ? "bg-blue-100 hover:bg-blue-100 "
+                  : "") +
                 "flex cursor-pointer flex-row items-center gap-2 rounded border px-2 shadow-sm hover:bg-blue-50"
               }
               key={idx}
@@ -47,4 +48,4 @@ function MulitSelect({ options = [1, 2, 3] }: { options?: Array<any> }) {
   );
 }
 
-export default MulitSelect;
+export default MultiSelect;
