@@ -1,4 +1,4 @@
-import { useStore } from "../context/counterContext";
+import { useStore } from "../App";
 
 function CounterButton() {
   const [count, setCount] = useStore((state) => state.count);

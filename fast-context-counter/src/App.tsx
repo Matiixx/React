@@ -1,15 +1,19 @@
 import "./App.css";
 import CounterContainer from "./components/CounterContainer";
-import { Provider } from "./context/counterContext";
+import genericContext from "./context/genericContext";
+
+const { Provider: GenericProvider, useStore } = genericContext({
+  count: 0,
+});
+export { useStore };
 
 function App() {
   return (
-    <Provider>
+    <GenericProvider>
       <div className="App">
         <CounterContainer />
       </div>
-    </Provider>
+    </GenericProvider>
   );
 }
-
 export default App;
