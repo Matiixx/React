@@ -1,5 +1,11 @@
+import PostalCodeInput from "./components/PostalCodeInput";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <PostalCodeInput />
+    </div>
+  );
 }
 
 export default App;
